@@ -4,11 +4,13 @@ import org.example.aeroroutes.domain.Flight;
 import org.example.aeroroutes.domain.Route;
 import org.example.aeroroutes.graph.FlightNetwork;
 import org.example.aeroroutes.repository.FlightRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class RouteFinderServiceImpl implements RouteFinderService{
 	private final FlightNetwork flightNetwork;
 	

@@ -1,6 +1,7 @@
 package org.example.aeroroutes.repository;
 
 import org.example.aeroroutes.domain.Flight;
+import org.springframework.stereotype.Repository;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Repository
 public class FlightRepositoryImpl implements FlightRepository{
 	private List<Flight> flights;
 	
