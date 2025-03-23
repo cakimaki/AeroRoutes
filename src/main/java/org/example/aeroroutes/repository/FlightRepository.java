@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface FlightRepository {
 	List<Flight> getAllFlights();
-	List<Flight> getFlightsFrom();
+	List<Flight> getFlightsFrom(String origin);
 }
