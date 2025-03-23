@@ -10,6 +10,11 @@ public class Route {
 		flights = new ArrayList<>();
 	}
 	
+	public Route(List<Flight> flights){
+		this.flights = flights;
+	}
+	
+	
 	public List<Flight> getFlights(){
 		return flights;
 	}
