@@ -1,13 +1,13 @@
 # Overview
 The project is about solving the task given about finding all routes from an origin to a destination with a given static file (flight.txt) which consists of all possible flights. It's taking into account pricing and an optional maximum number of flights.
 
-# Features
+## Features
   - *Graph-based DFS Route-Finding*
   - *Cycle Prevention*
   - *Optional MaxFlights Constraint*
   - *REST API for Route Search*
 
-# Design and Architecture
+## Design and Architecture
 ### Domain
 - **Flight:**
   - Encapsulates flight data including origin, destination, and price.
@@ -38,7 +38,7 @@ The project is about solving the task given about finding all routes from an ori
   - Exposes a REST API endpoint for route search.
   - Uses a request DTO (`RouteRequestDTO`) to validate input (leveraging Spring Boot's validation annotations) and a response DTO (`RouteResponseDTO`) aligned with the task requirements.
 
-# Setup and Installation
+## Setup and Installation
 - Java Version: Java 21
 - Build Tool: Gradle
 - Spring Boot Dependencies:
@@ -50,7 +50,7 @@ The project is about solving the task given about finding all routes from an ori
   2. Build the project using Gradle.
   3. Edit `flights.txt` to your preferences (optional)
   4. Run the Spring Boot application.
-# Usage
+## Usage
 The only REST API request is at **POST /routes**
 **Example Request Body:**
 ```
@@ -70,5 +70,5 @@ The only REST API request is at **POST /routes**
 ]
 ```
 
-# Application properties
+## Application properties
 A minimal configuration is provided in `application.properties`.
