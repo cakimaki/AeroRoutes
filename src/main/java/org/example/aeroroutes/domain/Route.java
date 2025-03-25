@@ -34,4 +34,26 @@ public class Route {
 		return "Route = " +
 				"[flights=" + flights + "]";
 	}
+	
+	
+	public List<String> getCities(){
+		List<String> cities = new ArrayList<>();
+		if(flights == null || flights.isEmpty()){
+			return cities;
+		}
+		cities.add(flights.getFirst().getOrigin());
+		for(Flight flight : flights){
+			cities.add(flight.getDestination());
+		}
+		return cities;
+	}
+	
+	public int getPrice(){
+		int price = 0;
+		for(Flight flight : flights){
+			price += flight.getPrice();
+		}
+		return price;
+	}
+	
 }

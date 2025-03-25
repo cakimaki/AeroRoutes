@@ -26,7 +26,7 @@ public class RouteFinderServiceImpl implements RouteFinderService{
 		findRoutesDFS(origin, destination, maxFlights, new ArrayList<>(), routesResult);
 		return routesResult;
 	}
-	
+
 	private void findRoutesDFS(String current, String destination, Optional<Integer> maxFlights,
 	                           List<Flight> currentPath, List<Route> routesResult){
 		// base case - reached destination.
@@ -34,7 +34,7 @@ public class RouteFinderServiceImpl implements RouteFinderService{
 			routesResult.add(new Route(new ArrayList<>(currentPath)));
 			return;
 		}
-		
+		//if the maxflights condition is present and if its met
 		if(maxFlights.isPresent() && maxFlights.get() <= currentPath.size()){
 			return;
 		}
