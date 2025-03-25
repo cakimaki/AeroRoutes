@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public class FlightRepositoryImpl implements FlightRepository{
+public class FlightRepositoryImpl implements FlightRepository {
 	private final List<Flight> flights;
 	
-	public FlightRepositoryImpl(){
+	public FlightRepositoryImpl() {
 		this.flights = new ArrayList<>();
 		loadFlights();
 	}
@@ -33,30 +33,38 @@ public class FlightRepositoryImpl implements FlightRepository{
 				.collect(Collectors.toCollection(ArrayList::new));
 	}
 	
-	private void loadFlights(){
+	private void loadFlights() {
 		InputStream inputStream = getClass().getResourceAsStream("/flights.txt");
-		if(inputStream == null){
+		if (inputStream == null) {
 			throw new RuntimeException("flights.txt not found in resources");
 		}
 		
-		try(BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));){
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));) {
 			String line;
 			
-			while((line = br.readLine()) != null){
+			while ((line = br.readLine()) != null) {
 				String[] parts = line.split(",");
 				
-				// Check if line has 3 parts - origin,dest,price (edge-case)
-				if(parts.length == 3){
+				// Check if line has 3 parts - origin,dest,price
+				//if it doesnt have print error and continue.
+				if (parts.length != 3) {
+					System.err.println("Skipping incorrect line (as the format is incorrect) " + line);
+					continue;
+				}
+				
+				//assign the flights to the Flight object and add it to the List
+				try {
 					String origin = parts[0].trim();
 					String destination = parts[1].trim();
 					int price = Integer.parseInt(parts[2].trim());
-					flights.add(new Flight(origin,destination,price));
+					flights.add(new Flight(origin, destination, price));
+				} catch (NumberFormatException e) {
+					System.err.println("Skipping line due to invalid price: " + line);
 				}
-				//todo
-				// check if price is valid to be parsed.
-
+				
 			}
-		}catch(IOException e){
+		} catch (
+				IOException e) {
 			e.printStackTrace();
 		}
 	}
