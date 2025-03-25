@@ -1,5 +1,5 @@
 # Overview
-The project is about solving the task given about finding all routes from an origin to a destination with a given static file (flight.txt) which consists of all possible flights. It's taking into account pricing and an optional maximum number of flights.
+The project is about solving the task given about finding all routes from an origin to a destination with a given static file (`flight.txt`) which consists of all possible flights. It's taking into account pricing and an optional maximum number of flights.
 
 ## Features
   - *Graph-based DFS Route-Finding*
