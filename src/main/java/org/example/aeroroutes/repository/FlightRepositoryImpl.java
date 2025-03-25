@@ -7,17 +7,30 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
 public class FlightRepositoryImpl implements FlightRepository{
-	private List<Flight> flights;
+	private final List<Flight> flights;
 	
 	public FlightRepositoryImpl(){
 		this.flights = new ArrayList<>();
 		loadFlights();
+	}
+	
+	@Override
+	public List<Flight> getAllFlights() {
+		return flights;
+	}
+	
+	@Override
+	public List<Flight> getFlightsFrom(String origin) {
+		return flights.stream()
+				.filter(flight -> flight.getOrigin().equalsIgnoreCase(origin))
+				.collect(Collectors.toCollection(ArrayList::new));
 	}
 	
 	private void loadFlights(){
@@ -26,7 +39,7 @@ public class FlightRepositoryImpl implements FlightRepository{
 			throw new RuntimeException("flights.txt not found in resources");
 		}
 		
-		try(BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));){
+		try(BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));){
 			String line;
 			
 			while((line = br.readLine()) != null){
@@ -46,17 +59,5 @@ public class FlightRepositoryImpl implements FlightRepository{
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-	}
-	
-	@Override
-	public List<Flight> getAllFlights() {
-		return flights;
-	}
-	
-	@Override
-	public List<Flight> getFlightsFrom(String origin) {
-		return flights.stream()
-				.filter(flight -> flight.getOrigin().equalsIgnoreCase(origin))
-				.collect(Collectors.toCollection(ArrayList::new));
 	}
 }
